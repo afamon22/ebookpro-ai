@@ -41,7 +41,7 @@ export interface EbookContent {
   marketingDescription: string;
 }
 
-const MODEL_NAME = gemini-2.0-flash;
+const MODEL_NAME = "gemini-2.0-flash";
 
 export const generateTitles = async (niche: string, language: string) => {
   return withRetry(async () => {
