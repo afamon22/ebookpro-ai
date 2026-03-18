@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #0d0d0d;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --accent-blue: #3b82f6;
+  --accent-gold: #d4af37;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
+
+/* Book Spine Effect */
+[class^="cover-"]::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 30px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Cover Engine Styles - Librairie Pro Edition */
+
+.cover-minimalist {
+  background: white;
+  color: #111;
+  font-family: 'Merriweather', serif;
+  border: 1px solid #e5e7eb;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+    inset 0 0 40px rgba(0, 0, 0, 0.02);
+}
+
+.cover-minimalist .accent-line {
+  height: 3px;
+  width: 40px;
+  background: #3b82f6;
+  border-radius: 2px;
+}
+
+.cover-dramatic {
+  background: linear-gradient(135deg, #111 0%, #000 100%);
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  position: relative;
+}
+
+.cover-dramatic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(225, 29, 72, 0.15), transparent);
+}
+
+.cover-classic {
+  background: linear-gradient(135deg, #2c1810 0%, #8b4513 40%, #d4a017 100%);
+  color: #fdf5e6;
+  font-family: 'Playfair Display', serif;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+  padding: 3rem !important;
+  position: relative;
+  overflow: hidden;
+  border: none !important;
+}
+
+/* Simulated texture with concentric circles */
+.cover-classic::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  background-image:
+    repeating-radial-gradient(circle at center, transparent, transparent 50px, rgba(212, 160, 23, 0.03) 50px, rgba(212, 160, 23, 0.03) 51px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cover-classic h1 {
+  color: #fdf5e6;
+  text-shadow: 2px 2px 8px rgba(212, 160, 23, 0.8);
+  font-weight: 900;
+  z-index: 10;
+}
+
+.cover-classic .gold-line {
+  height: 2px;
+  width: 120px;
+  background: linear-gradient(90deg, transparent, #d4a017 50%, transparent);
+  margin: 1rem auto;
+  z-index: 10;
+}
+
+.cover-classic .ornament {
+  color: #d4a017;
+  font-size: 1.5rem;
+  margin: 1.5rem 0;
+  filter: drop-shadow(0 0 5px rgba(212, 160, 23, 0.5));
+  z-index: 10;
+}
+
+.cover-classic .author-name {
+  color: #d4a017 !important;
+  font-variant: small-caps;
+  letter-spacing: 0.5em;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 10;
+}
+
+.cover-futuristic {
+  background: radial-gradient(circle at 30% 30%, #00d4ff 0%, #004d7a 30%, #020617 100%);
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  box-shadow: 0 0 50px rgba(0, 212, 255, 0.2);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Abstract fiber-optic lines */
+.cover-futuristic::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0, 212, 255, 0.1) 2px, rgba(0, 212, 255, 0.1) 4px),
+    radial-gradient(ellipse at center, transparent 0%, rgba(2, 6, 23, 0.8) 70%);
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+.cover-futuristic::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #22d3ee, transparent);
+  animation: scanning 3s linear infinite;
+}
+
+@keyframes scanning {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.cover-futuristic::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(0, 242, 255, 0.1) 0%, transparent 50%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Base Headings for App */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #60a5fa, #3b82f6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
