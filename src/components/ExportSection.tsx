@@ -114,8 +114,19 @@ export const ExportSection: React.FC<ExportSectionProps> = ({ data }) => {
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-500/10 text-green-500 rounded-full text-xs font-bold uppercase tracking-wider">
                     Génération terminée
                 </div>
-                <h2 className="text-5xl font-extrabold tracking-tight italic font-serif">Format Amazon KDP Validé.</h2>
-                <p className="text-gray-400 text-lg leading-relaxed max-w-xl mx-auto">
+
+                <div className="py-2">
+                    <p className="text-sm font-semibold text-blue-500 uppercase tracking-widest mb-3">Titre de votre ebook</p>
+                    <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight italic font-serif text-white max-w-3xl mx-auto leading-tight">
+                        "{data.selectedTitle}"
+                    </h1>
+                </div>
+
+                <div className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full">
+                    <span className="text-blue-400 font-medium">✓ Format Amazon KDP Validé</span>
+                </div>
+
+                <p className="text-gray-400 text-lg leading-relaxed max-w-xl mx-auto mt-2">
                     Votre ebook a été mis en conformité avec les standards de l'édition professionnelle (A5, Serif, Justifié).
                 </p>
 

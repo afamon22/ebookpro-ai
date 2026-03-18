@@ -138,6 +138,7 @@ function App() {
                 currentChapter={data.chapters.length}
                 totalChapters={outline.length}
                 chapters={data.chapters}
+                title={data.selectedTitle}
               />
             )}
 
