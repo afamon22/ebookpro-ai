@@ -18,7 +18,7 @@ export const ExportSection: React.FC<ExportSectionProps> = ({ data }) => {
 
         // Table of contents
         contentHtml += `
-            <div class="page-break" style="background: white; font-family: 'Merriweather', serif; color: #1a1a1a; min-height: 170mm;">
+            <div class="page-break" style="background: white; font-family: 'Merriweather', serif; color: #1a1a1a;">
                 <h1 style="text-align: center; margin-bottom: 60px; font-size: 22pt; font-family: 'Playfair Display', serif; font-weight: 700; color: #1a1a1a; border-bottom: 0.5pt solid #eee; padding-bottom: 20px;">Sommaire</h1>
                 <div style="display: flex; flex-direction: column; gap: 20px;">
                     ${data.chapters.map((ch, idx) => `
@@ -38,7 +38,7 @@ export const ExportSection: React.FC<ExportSectionProps> = ({ data }) => {
             const cleanedContent = chapter.content.replace(/<h[12][^>]*>.*?<\/h[12]>/i, '');
 
             contentHtml += `
-                <div class="page-break chapter-page" style="background: white; color: #1a1a1a; min-height: 100%; position: relative; display: flex; flex-direction: column;">
+                <div class="page-break chapter-page" style="background: white; color: #1a1a1a; position: relative; display: flex; flex-direction: column;">
                     <div style="flex: 1; padding-bottom: 20px;">
                         <div class="chapter-header" style="margin-bottom: 45px; text-align: center;">
                             <div style="text-transform: uppercase; letter-spacing: 3px; font-size: 9pt; color: #888888; margin-bottom: 10px; font-family: 'Inter', sans-serif; font-weight: 400;">Chapitre ${index + 1}</div>
@@ -80,7 +80,6 @@ export const ExportSection: React.FC<ExportSectionProps> = ({ data }) => {
             .page-break { 
               page-break-after: always;
               position: relative;
-              height: 100%;
             }
             @media print {
               body { margin: 0; padding: 0; }
