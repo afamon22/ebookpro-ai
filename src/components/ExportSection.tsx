@@ -9,7 +9,7 @@ interface ExportSectionProps {
 export const ExportSection: React.FC<ExportSectionProps> = ({ data }) => {
     const cleanChapterTitle = (title: string) => {
         // Remove "Chapitre X", "Chapter X", "Chapitre X :", etc.
-        let cleaned = title.replace(/^(Chapitre|Chapter)\s*\d+\s*[:\-]?\s*/i, '').trim();
+        const cleaned = title.replace(/^(Chapitre|Chapter)\s*\d+\s*[:-]?\s*/i, '').trim();
         return cleaned;
     };
 

@@ -38,7 +38,8 @@ function App() {
       const generatedTitles = await geminiService.generateTitles(config.topic, config.language, config.editorialStyle);
       setTitles(generatedTitles);
       setData(prev => ({ ...prev, currentStep: 2, isGenerating: false }));
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as Error;
       console.error(error);
       toast.error(error.message || "Erreur lors de la génération des titres.");
       setData(prev => ({ ...prev, isGenerating: false }));
@@ -54,7 +55,8 @@ function App() {
 
       // Start content generation automatically
       generateFullContent(title, chaptersList);
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as Error;
       console.error(error);
       toast.error(error.message || "Erreur lors de la génération du plan.");
       setData(prev => ({ ...prev, isGenerating: false }));

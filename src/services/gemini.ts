@@ -15,7 +15,9 @@ const MODEL_NAME = "gemini-flash-latest"; // Utilisation de l'alias stable pour 
 async function retry<T>(fn: () => Promise<T>, retries = 2): Promise<T> {
     try {
         return await fn();
-    } catch (error: any) {
+    } catch (err) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const error = err as any;
         console.error("Gemini API Error:", error);
 
         const status = error?.status || error?.response?.status;
