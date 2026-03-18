@@ -118,7 +118,7 @@ export const ExportSection: React.FC<ExportSectionProps> = ({ data }) => {
                 <div className="py-2">
                     <p className="text-sm font-semibold text-blue-500 uppercase tracking-widest mb-3">Titre de votre ebook</p>
                     <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight italic font-serif text-white max-w-3xl mx-auto leading-tight">
-                        "{data.selectedTitle}"
+                        "{data.selectedTitle || 'Titre introuvable !'}"
                     </h1>
                 </div>
 
