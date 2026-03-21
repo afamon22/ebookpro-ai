@@ -24,6 +24,7 @@ function App() {
     config: initialConfig,
     selectedTitle: '',
     chapters: [],
+    seoTags: [],
     isGenerating: false,
     currentStep: 1,
   });
@@ -87,9 +88,19 @@ function App() {
       }
     }
 
-    setData(prev => ({ ...prev, currentStep: 4, isGenerating: false }));
-    toast.success("Ebook généré avec succès !");
-    setGenerationProgress(100);
+    setData(prev => ({ ...prev, currentStep: 4, isGenerating: true }));
+
+    try {
+      const seoTags = await geminiService.generateSeoTags(title, data.config.topic, data.config.language);
+      setData(prev => ({ ...prev, seoTags, isGenerating: false }));
+      toast.success("Ebook généré avec succès !");
+      setGenerationProgress(100);
+    } catch (error) {
+      console.error('Error generating SEO tags:', error);
+      toast.error('Génération des tags SEO a échouée.');
+      setData(prev => ({ ...prev, seoTags: [], isGenerating: false }));
+      setGenerationProgress(100);
+    }
   };
 
   const resetProject = () => {
@@ -97,6 +108,7 @@ function App() {
       config: initialConfig,
       selectedTitle: '',
       chapters: [],
+      seoTags: [],
       isGenerating: false,
       currentStep: 1,
     });
@@ -156,7 +168,11 @@ function App() {
           <div className="absolute inset-0 bg-background/20 backdrop-blur-sm flex flex-col items-center justify-center z-50">
             <Loader2 className="w-12 h-12 text-blue-500 animate-spin mb-4" />
             <p className="text-xl font-medium tracking-wide">
-              {data.currentStep === 3 ? `Génération du contenu... ${generationProgress}%` : "Analyse par Gemini..."}
+              {data.currentStep === 3
+                ? `Génération du contenu... ${generationProgress}%`
+                : data.currentStep === 4
+                  ? "Génération des tags SEO..."
+                  : "Analyse par Gemini..."}
             </p>
           </div>
         )}

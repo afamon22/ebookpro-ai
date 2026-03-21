@@ -147,6 +147,27 @@ export const ExportSection: React.FC<ExportSectionProps> = ({ data }) => {
                         Le rendu PDF respecte les marges de 18-20mm et la police <strong>Merriweather</strong> en 11pt pour un confort de lecture optimal.
                     </p>
                 </div>
+
+                {data.seoTags && data.seoTags.length > 0 && (
+                    <div className="max-w-xl mx-auto mt-8 bg-surface border border-border rounded-2xl p-6 shadow-xl backdrop-blur-sm text-left">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="p-2 bg-green-500/10 rounded-lg">
+                                <span className="text-xl">🚀</span>
+                            </div>
+                            <div>
+                                <h3 className="text-lg font-bold text-white">Tags SEO Puissants</h3>
+                                <p className="text-sm text-gray-400">À intégrer dans votre page de vente pour maximiser la visibilité</p>
+                            </div>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                            {data.seoTags.map((tag, idx) => (
+                                <span key={idx} className="px-3 py-1.5 bg-gray-800 border border-gray-700 rounded-full text-sm font-medium text-gray-200 shadow-sm hover:border-green-500/50 hover:bg-green-500/10 hover:text-green-400 transition-colors cursor-default">
+                                    #{tag.replace(/\s+/g, '')}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

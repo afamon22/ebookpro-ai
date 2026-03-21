@@ -25,6 +25,7 @@ export interface EbookData {
     config: EbookConfig;
     selectedTitle: string;
     chapters: Chapter[];
+    seoTags: string[];
     isGenerating: boolean;
     currentStep: number;
 }

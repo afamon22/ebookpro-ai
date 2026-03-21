@@ -100,5 +100,22 @@ export const geminiService = {
             });
             return result.response.text();
         });
+    },
+
+    async generateSeoTags(title: string, topic: string, language: string) {
+        const model = genAI.getGenerativeModel({ model: MODEL_NAME });
+        const prompt = `Génère exactement 5 mots-clés ou expressions (tags) SEO très forts et pertinents pour un ebook intitulé "${title}" sur le thème "${topic}".
+    Langue : ${language}
+    Ces tags seront utilisés sur une page de vente pour maximiser le référencement.
+    Réponds uniquement au format JSON avec la structure suivante :
+    { "tags": ["tag1", "tag2", "tag3", "tag4", "tag5"] }`;
+
+        return retry(async () => {
+            const result = await model.generateContent(prompt);
+            const text = result.response.text();
+            const cleanJson = text.replace(/```json|```/g, '').trim();
+            const data = JSON.parse(cleanJson);
+            return data.tags || [];
+        });
     }
 };
